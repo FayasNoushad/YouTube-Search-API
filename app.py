@@ -46,6 +46,16 @@ def playlists():
     return jsonify(playlists.result())
 
 
+@app.route("/channels/", methods=['GET'])
+def channels():
+    query = request.args.get('query')
+    limit = int(request.args.get('limit')) if request.args.get('limit') else 100
+    language = request.args.get('language') if request.args.get('language') else None
+    region = request.args.get('region') if request.args.get('region') else None
+    channels = ChannelsSearch(query, limit=limit, language=language, region=region)
+    return jsonify(channels.result())
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host="0.0.0.0", port=5000, use_reloader=True, threaded=True)
