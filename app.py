@@ -91,6 +91,14 @@ def getplaylistvideos():
     return jsonify(playlistvideos)
 
 
+@app.route("/hashtag/", methods=['GET'])
+def hashtag():
+    query = request.args.get('query')
+    limit = int(request.args.get('limit')) if request.args.get('limit') else 100
+    hashtag = Hashtag(query, limit=limit)
+    return jsonify(hashtag.result())
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host="0.0.0.0", port=5000, use_reloader=True, threaded=True)
