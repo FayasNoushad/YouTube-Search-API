@@ -56,6 +56,13 @@ def channels():
     return jsonify(channels.result())
 
 
+@app.route("/video/get/", methods=['GET'])
+def getvideo():
+    query = request.args.get('query')
+    video = Video.get(query, mode=ResultMode.json)
+    return jsonify(video)
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host="0.0.0.0", port=5000, use_reloader=True, threaded=True)
