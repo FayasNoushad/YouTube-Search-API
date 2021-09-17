@@ -70,6 +70,13 @@ def getvideoinfo():
     return jsonify(videoinfo)
 
 
+@app.route("/video/getformats/", methods=['GET'])
+def getvideoformats():
+    query = request.args.get('query')
+    videoformat = Video.getFormats(query, mode=ResultMode.json)
+    return jsonify(videoformat)
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host="0.0.0.0", port=5000, use_reloader=True, threaded=True)
