@@ -84,6 +84,13 @@ def getplaylist():
     return jsonify(playlist)
 
 
+@app.route("/playlist/getvideos/", methods=['GET'])
+def getplaylistvideos():
+    query = request.args.get('query')
+    playlistvideos = Playlist.getFormat(query, mode=ResultMode.json)
+    return jsonify(playlistvideos)
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host="0.0.0.0", port=5000, use_reloader=True, threaded=True)
