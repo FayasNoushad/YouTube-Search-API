@@ -63,6 +63,13 @@ def getvideo():
     return jsonify(video)
 
 
+@app.route("/video/getinfo/", methods=['GET'])
+def getvideoinfo():
+    query = request.args.get('query')
+    videoinfo = Video.getInfo(query, mode=ResultMode.json)
+    return jsonify(videoinfo)
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host="0.0.0.0", port=5000, use_reloader=True, threaded=True)
