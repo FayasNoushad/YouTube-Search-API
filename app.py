@@ -4,16 +4,16 @@
 # All rights reserved by FayasNoushad
 # License -> https://github.com/FayasNoushad/YouTube-Search-API/blob/main/LICENSE
 
-from flask import Flask, redirect, request, jsonify, json
+from flask import Flask, redirect, render_template, request, jsonify, json
 from youtubesearchpython import *
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="public")
 
 
 @app.route("/")
 def home():
-    return "Documentation:- <a href='https://github.com/FayasNoushad/YouTube-Search-API'>YouTube-Search-API</a>"
+    return render_template("index.html")
 
 
 @app.route("/search/", methods=['GET'])
